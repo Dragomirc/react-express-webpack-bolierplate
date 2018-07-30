@@ -1,6 +1,9 @@
 import express from "express";
 
+const PORT = process.env.PORT || 3000;
 const app = express();
-
 app.use(express.static("dist"));
-app.listen(8080, () => console.log("Listening o nthe port 8080"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "..", "dist", "index.html"));
+});
+app.listen(PORT, () => console.log(`Listening on the port ${PORT}`));
